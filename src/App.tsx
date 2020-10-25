@@ -1,39 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
+import React, { ReactElement } from 'react';
 import './App.css';
+import { TaggableSelect } from './components/TaggableSelect';
 
-interface AppProps {}
+function App(): ReactElement {
+  const tags = [
+    {
+      key: 'tag1',
+      label: 'tag1',
+      options: [{ key: 'something', label: 'other' }],
+    },
+    { key: 'a-tag', label: 'a-tag' },
+  ];
 
-function App({}: AppProps) {
-  // Create the count state.
-  const [count, setCount] = useState(0);
-  // Create the counter (+1 every second).
-  useEffect(() => {
-    const timer = setTimeout(() => setCount(count + 1), 1000);
-    return () => clearTimeout(timer);
-  }, [count, setCount]);
-  // Return the App component.
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <p>
-          Page has been open for <code>{count}</code> seconds.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </p>
-      </header>
+      <TaggableSelect tags={tags} />
     </div>
   );
 }
